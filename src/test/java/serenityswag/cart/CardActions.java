@@ -15,7 +15,7 @@ public class CardActions extends UIInteractionSteps {
     }
 
     @Step("Add {0} to the cart")
-    public void adItems(@NotNull List<String> items) {
+    public void addItems(@NotNull List<String> items) {
 //        for(String itemName:items){
 //            item(itemName);
 //        }

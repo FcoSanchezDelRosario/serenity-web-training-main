@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import serenityswag.authentication.LoginActions;
 import serenityswag.cart.CardActions;
+import serenityswag.cart.CartItem;
+import serenityswag.cart.CartPageObject;
 import serenityswag.cart.ShoppingCartIcon;
 
 import java.util.List;
@@ -61,7 +63,7 @@ public class WhenAddingAnItemToTheCart {
         List<String> selectedItems= firstThreeProductTitlesDisplayed();
         
         //Open the cart page
-        cart.adItems(selectedItems);
+        cart.addItems(selectedItems);
 
         String cartBadgeCount= Integer.toString(selectedItems.size());
         Serenity.reportThat("The shopping cart badge should now be " + cartBadgeCount,
@@ -74,6 +76,28 @@ public class WhenAddingAnItemToTheCart {
         Serenity.reportThat("Should see all the items listed " ,
                 ()->         assertThat(cart.displayedItems()).containsExactlyElementsOf(selectedItems)
         );
+    }
+
+
+    CartPageObject cartPage;
+
+    // Serenity BDD Page Objects
+    @Test
+    public void pricesForEachItemShouldBeShownInInTheCart(){
+
+        // add items to the shopping cart
+        cart.addItems(firstThreeProductTitlesDisplayed());
+
+        // Open the cart page
+        cartPage.open();
+
+        // Check that each item in the cart has a price
+        List<CartItem> items= cartPage.items();
+
+        assertThat(items).hasSize(3)
+                .allMatch(item -> item.price()> 0.0)
+                .allMatch(item ->item.description().isEmpty());
+
     }
 
     @NotNull
