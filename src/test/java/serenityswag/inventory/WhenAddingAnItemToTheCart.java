@@ -96,7 +96,7 @@ public class WhenAddingAnItemToTheCart {
 
         assertThat(items).hasSize(3)
                 .allMatch(item -> item.price()> 0.0)
-                .allMatch(item ->item.description().isEmpty());
+                .allMatch(item -> !item.description().isEmpty());
 
     }
 
