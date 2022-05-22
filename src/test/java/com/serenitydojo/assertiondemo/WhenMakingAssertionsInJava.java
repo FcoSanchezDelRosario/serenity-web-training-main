@@ -34,7 +34,11 @@ public class WhenMakingAssertionsInJava {
 
         //assertThat(age).isGreaterThanOrEqualTo(21);
 
-        assertThat(ages).contains(age);
+       // assertThat(ages).contains(age);
 
+        assertThat(ages)
+                .contains(10)
+                .hasSize(4)
+                .allMatch(a -> a > 0 && a <=100);
     }
 }
