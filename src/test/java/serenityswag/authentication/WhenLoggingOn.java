@@ -15,7 +15,7 @@ import static serenityswag.authentication.User.STANDARD_USER;
 @RunWith(SerenityRunner.class)
 public class WhenLoggingOn {
 
-    @Managed
+    @Managed(driver = "chrome", uniqueSession = true)
     WebDriver driver;
 
     @Steps
@@ -28,7 +28,9 @@ public class WhenLoggingOn {
 
         login.as(STANDARD_USER);
 
-        // Should see product catalog
+        Serenity.recordReportData().withTitle("User credentials")
+                .andContents("User: " +STANDARD_USER);
+
         Serenity.reportThat("The inventory page should be displayed with the correct title",
                 () -> assertThat(inventoryPage.getHeading()).isEqualToIgnoringCase("Products")
         );
