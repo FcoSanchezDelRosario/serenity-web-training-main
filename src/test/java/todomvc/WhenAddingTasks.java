@@ -46,7 +46,6 @@ public class WhenAddingTasks {
         //Check that they all appear in the list
         assertThat(todoList.items())
                 .containsExactly("Feed the Cat","Walk the dog");
-
     }
 
     @After

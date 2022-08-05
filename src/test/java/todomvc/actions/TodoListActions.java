@@ -3,8 +3,11 @@ package todomvc.actions;
 
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+
+import static todomvc.actions.TodoListForm.*;
 
 public class TodoListActions extends UIInteractionSteps {
 
@@ -15,11 +18,11 @@ public class TodoListActions extends UIInteractionSteps {
 
     @Step("Adding item {0}")
     public void addItem(String item) {
-        $(".new-todo").typeAndEnter(item);
+        $(NEW_TODO_FIELD).typeAndEnter(item);
     }
 
     @Step("Add items {0}")
-    public void addItems(String... items) {
+    public void addItems(@NotNull String... items) {
         for (String item : items) {
             addItem(item);
         }
@@ -27,11 +30,26 @@ public class TodoListActions extends UIInteractionSteps {
 
     @Step("Destroying list")
     public void destroyList() {
-        $(".destroy").click();
+        $(DESTROY_LIST).click();
+    }
+
+    @Step("Complete item {0}")
+    public void completeItem(String item) {
+        $(COMPLETE_CHECKBOX, item).click();
+    }
+
+    @Step("Filter by {0}")
+    public void filterBy(String filterName) {
+        $(FILTER_BUTTON, filterName).click();
+    }
+
+    @Step("Delete item {0}")
+    public void deleteItem(String item) {
+        $(ITEM_LABEL, item).click();
+        $(DELETE_ICON, item).click();
     }
 
     public List<String> items() {
-        return $$(".todo-list label").texts();
+        return $$(ITEM_LABELS).texts();
     }
-
 }
