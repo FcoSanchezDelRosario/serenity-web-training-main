@@ -12,7 +12,7 @@ public class TodoListActions extends UIInteractionSteps {
 
     @Step("Open the TodoMVC application")
     public void openApplication() {
-        openUrl("https://todomvc.com/examples/angularjs/#/");
+        openPageNamed("home");
     }
 
     @Step("Adding item {0}")
