@@ -22,6 +22,11 @@ public class TodoListActions extends UIInteractionSteps {
     }
 
     @Step("Add items {0}")
+    public void addItems(@NotNull List<String> items) {
+        items.forEach(this::addItems);
+    }
+
+    @Step("Add items {0}")
     public void addItems(@NotNull String... items) {
         for (String item : items) {
             addItem(item);
