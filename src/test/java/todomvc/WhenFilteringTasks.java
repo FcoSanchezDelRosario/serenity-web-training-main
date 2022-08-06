@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import todomvc.actions.TodoListActions;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
