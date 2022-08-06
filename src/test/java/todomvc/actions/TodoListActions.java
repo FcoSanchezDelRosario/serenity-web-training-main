@@ -1,6 +1,5 @@
 package todomvc.actions;
 
-
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
 import org.jetbrains.annotations.NotNull;
